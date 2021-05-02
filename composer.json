@@ -1,0 +1,31 @@
+{
+  "name": "chishiki/perihelion-satellite",
+  "description": "Example Perihelion Module",
+  "version": "0.1.0",
+  "keywords": [
+    "php",
+    "module",
+    "perihelion",
+    "satellite"
+  ],
+  "homepage": "https://perihelion.xyz/",
+  "time": "2021-05-02",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Christopher Webb",
+      "email": "christopher@zenidev.com",
+      "homepage": "https://linkedin.com/in/chishiki",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "email": "support@zenidev.com",
+    "issues": "https://github.com/chishiki/perihelion-satellite/issues",
+    "wiki": "https://github.com/chishiki/perihelion-satellite/wiki",
+    "source": "https://github.com/chishiki/perihelion-satellite",
+    "docs": "https://github.com/chishiki/perihelion-satellite/wiki"
+  },
+  "require": {
+  }
+}
