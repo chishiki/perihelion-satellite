@@ -1,0 +1,1 @@
+satellite-specific image assets go here

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../perihelion/.idea/perihelion.iml" filepath="$PROJECT_DIR$/../perihelion/.idea/perihelion.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/perihelion-satellite.iml" filepath="$PROJECT_DIR$/.idea/perihelion-satellite.iml" />
+    </modules>
+  </component>
+</project>
