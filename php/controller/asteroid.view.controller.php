@@ -20,7 +20,22 @@ final class AsteroidViewController {
 
 	public function getView() {
 
+		$loc = $this->loc;
 
+		if ($loc[1] == 'asteroids') {
+
+			$asteroidView = new AsteroidView();
+
+			// /perihelion-satellite/asteroids/create/
+			if ($loc[2] == 'create') { return $asteroidView->asteroidForm('create'); }
+
+			// /perihelion-satellite/asteroids/update/<asteroidID>/
+			if ($loc[2] == 'update' && ctype_digit($loc[3])) { return $asteroidView->asteroidForm('update',$loc[3]); }
+
+			// /perihelion-satellite/asteroids/
+			return $asteroidView->asteroidList();
+
+		}
 
 	}
 

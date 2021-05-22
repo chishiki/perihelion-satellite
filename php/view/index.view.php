@@ -9,18 +9,28 @@ final class PerihelionSatelliteIndexView {
 		
 	    $this->urlArray = $urlArray;
 		$this->view = $this->index();
-		
-		if (!Auth::isLoggedIn()) {
-			$loginURL = '/' . Lang::prefix() . 'login/';
-			header("Location: $loginURL");
-		}
 
 	}
 
 	private function index() {
 
-		$view = new AsteroidView();
-	    return $view->asteroidList();
+		$addToIndex = 'ASTEROID MODULE LOADED';
+		if (Auth::isLoggedIn()) {
+			$addToIndex = '<a href="/' . Lang::prefix() . 'perihelion-satellite/asteroids/" class="btn btn-outline-info">' . Lang::getLang('asteroids') . '</a>';
+			$addToIndex .= '<hr />';
+		}
+		$addToIndex .= '<p class="font-weight-lighter">Edit this card or remove it in /perihelion-satellite/php/view/index.view.php</p>';
+
+		$card = new CardView(
+			'satellite_index',
+			array('container-fluid','my-3'),
+			'',
+			array('col-12','col-md-8','offset-md-2'),
+			'PERIHELION SATELLITE',
+			$addToIndex,
+			false
+		);
+		return $card->card();
 	    
 	}
 	

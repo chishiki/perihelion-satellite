@@ -7,3 +7,7 @@ INSERT INTO perihelion_Lang VALUES ('asteroidDistanceFromSun', 'Distance from Su
 INSERT INTO perihelion_Lang VALUES ('asteroidDiscoverer', 'Discoverer', 0, '発見者', 0, @langTimeStamp);
 INSERT INTO perihelion_Lang VALUES ('asteroidDateDiscovered', 'Date Discovered', 0, '発見日', 0, @langTimeStamp);
 INSERT INTO perihelion_Lang VALUES ('asteroids', 'Asteroids', 0, '小惑星', 0, @langTimeStamp);
+INSERT INTO perihelion_Lang VALUES ('asteroidCreate', 'Add Asteroid', 0, '小惑星新規追加', 0, @langTimeStamp);
+INSERT INTO perihelion_Lang VALUES ('asteroidCreateSuccessful', 'Asteroid created successfully.', 0, '小惑星が追加されました。', 0, @langTimeStamp);
+INSERT INTO perihelion_Lang VALUES ('asteroidUpdate', 'Update Asteroid', 0, '小惑星更新', 0, @langTimeStamp);
+INSERT INTO perihelion_Lang VALUES ('asteroidUpdateSuccessful', 'Asteroid updated successfully.', 0, '小惑星が更新されました。', 0, @langTimeStamp);

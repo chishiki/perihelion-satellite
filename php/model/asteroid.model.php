@@ -2,20 +2,20 @@
 
 /*
 
-CREATE TABLE `satellite_Asteroid` (
-	`asteroidID` INT(12) NOT NULL AUTO_INCREMENT,
-	`siteID` INT(12) NOT NULL,
-	`creator` INT(12) NOT NULL,
-	`created` DATETIME NOT NULL,
-	`updated` DATETIME NOT NULL,
-	`deleted` INT(1) NOT NULL,
-	`asteroidName` VARCHAR(100) NOT NULL,
-	`asteroidDiameter` INT(12) NOT NULL,
-	`asteroidDistanceFromSun` INT(12) NOT NULL,
-	`asteroidDiscoverer` VARCHAR(100) NOT NULL,
-	`asteroidDateDiscovered` DATE NOT NULL,
-	PRIMARY KEY (`asteroidID`)
-);
+CREATE TABLE `example_Asteroid` (
+  `asteroidID` int(12) NOT NULL AUTO_INCREMENT,
+  `siteID` int(12) NOT NULL,
+  `creator` int(12) NOT NULL,
+  `created` datetime NOT NULL,
+  `updated` datetime NOT NULL,
+  `deleted` int(1) NOT NULL,
+  `asteroidName` varchar(100) NOT NULL,
+  `asteroidDiameter` decimal(6,1) NOT NULL,
+  `asteroidDistanceFromSun` decimal(8,4) NOT NULL,
+  `asteroidDiscoverer` varchar(100) NOT NULL,
+  `asteroidDateDiscovered` date NOT NULL,
+  PRIMARY KEY (`asteroidID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
 
 */
 
@@ -59,7 +59,7 @@ final class Asteroid extends ORM {
 			$whereClause[] = 'deleted = 0';
 			$whereClause[] = 'asteroidID = :asteroidID';
 
-			$query = 'SELECT * FROM satellite_Asteroid WHERE ' . implode(' AND ', $whereClause) . ' LIMIT 1';
+			$query = 'SELECT * FROM example_Asteroid WHERE ' . implode(' AND ', $whereClause) . ' LIMIT 1';
 
 			$statement = $nucleus->database->prepare($query);
 			$statement->bindParam(':siteID', $_SESSION['siteID'], PDO::PARAM_INT);
@@ -80,7 +80,7 @@ final class Asteroid extends ORM {
 		$this->updated = $dt->format('Y-m-d H:i:s');
 		$this->deleted = 1;
 		$conditions = array('asteroidID' => $this->asteroidID);
-		self::update($this, $conditions, true, false, 'satellite_');
+		self::update($this, $conditions, true, false, 'example_');
 
 	}
 
@@ -116,7 +116,7 @@ final class AsteroidList {
 				$selector = 'asteroidID';
 		}
 
-		$query = 'SELECT ' . $selector . ' FROM satellite_Asteroid WHERE ' . implode(' AND ',$where) . ' ORDER BY ' . implode(', ',$orderBy);
+		$query = 'SELECT ' . $selector . ' FROM example_Asteroid WHERE ' . implode(' AND ',$where) . ' ORDER BY ' . implode(', ',$orderBy);
 		if ($arg->limit) { $query .= ' LIMIT ' . $arg->limit . ($arg->offset?', '.$arg->offset:''); }
 
 		$nucleus = Nucleus::getInstance();

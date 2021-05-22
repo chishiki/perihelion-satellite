@@ -26,17 +26,19 @@ final class AsteroidView {
 
 		$body = '
 
-			<div class="d-flex mb-2 justify-content-end">
-				<a href="/' . Lang::prefix() . 'perihelion-satellite/asteroids/create/" class="btn btn-outline-success">' . Lang::getLang('create') . '</a>
+			<div class="row">
+				<div class="col-12 col-sm-6 offset-sm-6 col-md-3 offset-md-9 col-lg-2 offset-lg-10">
+					<a href="/' . Lang::prefix() . 'perihelion-satellite/asteroids/create/" class="btn btn-block btn-outline-success">' . Lang::getLang('create') . '</a>
+				</div>
 			</div>
 
-			<div class="table-container">
+			<div class="table-container mt-2">
 
 				<div class="table-responsive">
 					<table class="table table-bordered table-striped table-hover table-sm">
 						<thead class="thead-light">
 							<tr>
-								<th scope="col">' . Lang::getLang('asteroidID') . '</th>
+								<th scope="col" class="text-center">' . Lang::getLang('asteroidID') . '</th>
 								<th scope="col" class="text-center">' . Lang::getLang('asteroidName') . '</th>
 								<th scope="col" class="text-center">' . Lang::getLang('asteroidDiameter') . '</th>
 								<th scope="col" class="text-center">' . Lang::getLang('asteroidDistanceFromSun') . '</th>
@@ -52,7 +54,7 @@ final class AsteroidView {
 
 	';
 
-		$card = new CardView('satellite_asteroid_list',array('container'),'',array('col-12'),Lang::getLang('asteroids'),$body);
+		$card = new CardView('asteroid_list',array('container'),'',array('col-12'),Lang::getLang('asteroids'),$body);
 		return $card->card();
 
 	}
@@ -79,12 +81,18 @@ final class AsteroidView {
 					
 					<div class="form-group col-12 col-md-3">
 						<label for="asteroidDiameter">' . Lang::getLang('asteroidDiameter') . '</label>
-						<input type="number" class="form-control" name="asteroidDiameter" value="' . $asteroid->asteroidDiameter . '">
+						<div class="input-group">
+							<input type="number" class="form-control" name="asteroidDiameter" value="' . $asteroid->asteroidDiameter . '" min="0" step="0.1" max="99999.9"> <!-- decimal(6,1) -->
+							<div class="input-group-append"><span class="input-group-text">KM</span></div>
+						</div>
 					</div>
 
 					<div class="form-group col-12 col-md-3">
 						<label for="asteroidDistanceFromSun">' . Lang::getLang('asteroidDistanceFromSun') . '</label>
-						<input type="number" class="form-control" name="asteroidDistanceFromSun" value="' . $asteroid->asteroidDistanceFromSun . '">
+						<div class="input-group">
+							<input type="number" class="form-control" name="asteroidDistanceFromSun" value="' . $asteroid->asteroidDistanceFromSun . '" min="0" step="0.0001" max="9999.9999"> <!-- decimal(8,4) -->
+							<div class="input-group-append"><span class="input-group-text">AU</span></div>
+						</div>
 					</div>
 
 					<div class="form-group col-12 col-md-8">
@@ -101,11 +109,15 @@ final class AsteroidView {
 
 				<div class="form-row">
 				
-					<div class="form-group col-6 col-md-3 offset-md-6">
-						<button type="submit" class="btn btn-block btn-outline-'. ($type=='create'?'success':'primary') . '">' . Lang::getLang($type) . '</button>
+					<div class="form-group col-12 col-sm-4 col-md-3">
+						<a href="/' . Lang::prefix() . 'perihelion-satellite/asteroids/" class="btn btn-block btn-outline-secondary" role="button">' . Lang::getLang('returnToList') . '</a>
 					</div>
 					
-					<div class="form-group col-6 col-md-3">
+					<div class="form-group col-12 col-sm-4 col-md-3 offset-md-3">
+						<button type="submit" name="asteroid-' . $type . '" class="btn btn-block btn-outline-'. ($type=='create'?'success':'primary') . '">' . Lang::getLang($type) . '</button>
+					</div>
+					
+					<div class="form-group col-12 col-sm-4 col-md-3">
 						<a href="/' . Lang::prefix() . 'perihelion-satellite/asteroids/" class="btn btn-block btn-outline-secondary" role="button">' . Lang::getLang('cancel') . '</a>
 					</div>
 					
@@ -115,8 +127,8 @@ final class AsteroidView {
 
 		';
 
-		$header = Lang::getLang('asteroidConfirmDelete').' ['. $asteroid->asteroidName .']';
-		$card = new CardView('satellite_asteroid_confirm_delete',array('container'),'',array('col-12'),$header,$form);
+		$header = Lang::getLang('asteroid'.ucfirst($type)).($type=='update'?' ['.$asteroid->asteroidName.']':'');
+		$card = new CardView('asteroid_confirm_'.ucfirst($type),array('container'),'',array('col-12'),$header,$form);
 		return $card->card();
 
 	}
@@ -127,8 +139,10 @@ final class AsteroidView {
 
 		$form = '
 
-			<form id="asteroid_confirm_delete">
-			
+			<form id="asteroid_form_delete" method="post" action="/' . Lang::prefix() . 'perihelion-satellite/asteroids/delete/' . $asteroidID . '/">
+				
+				<input type="hidden" name="asteroidID" value="' . $asteroidID . '">
+
 				<div class="form-row">
 				
 					<div class="form-group col-12 col-md-6">
@@ -138,12 +152,18 @@ final class AsteroidView {
 					
 					<div class="form-group col-12 col-md-3">
 						<label for="asteroidDiameter">' . Lang::getLang('asteroidDiameter') . '</label>
-						<input type="number" class="form-control" name="asteroidDiameter" value="' . $asteroid->asteroidDiameter . '" disabled>
+						<div class="input-group">
+							<input type="number" class="form-control" name="asteroidDiameter" value="' . $asteroid->asteroidDiameter . '" disabled>
+							<div class="input-group-append"><span class="input-group-text">KM</span></div>
+						</div>
 					</div>
 
 					<div class="form-group col-12 col-md-3">
 						<label for="asteroidDistanceFromSun">' . Lang::getLang('asteroidDistanceFromSun') . '</label>
-						<input type="number" class="form-control" name="asteroidDistanceFromSun" value="' . $asteroid->asteroidDistanceFromSun . '" disabled>
+						<div class="input-group">
+							<input type="number" class="form-control" name="asteroidDistanceFromSun" value="' . $asteroid->asteroidDistanceFromSun . '" disabled>
+							<div class="input-group-append"><span class="input-group-text">AU</span></div>
+						</div>
 					</div>
 
 					<div class="form-group col-12 col-md-8">
@@ -161,7 +181,7 @@ final class AsteroidView {
 				<div class="form-row">
 				
 					<div class="form-group col-6 col-md-3 offset-md-6">
-						<a href="/' . Lang::prefix() . 'perihelion-satellite/asteroids/delete/' . $asteroidID . '/" class="btn btn-block btn-outline-danger" role="button">' . Lang::getLang('delete') . '</a>
+						<button type="submit" name="asteroid-confirm-delete" class="btn btn-block btn-outline-danger">' . Lang::getLang('delete') . '</button>
 					</div>
 					
 					<div class="form-group col-6 col-md-3">
@@ -174,7 +194,7 @@ final class AsteroidView {
 		';
 
 		$header = Lang::getLang('asteroidConfirmDelete').' ['. $asteroid->asteroidName .']';
-		$card = new CardView('satellite_asteroid_confirm_delete',array('container'),'',array('col-12'),$header,$form);
+		$card = new CardView('asteroid_confirm_delete',array('container'),'',array('col-12'),$header,$form);
 		return $card->card();
 
 	}
@@ -189,13 +209,13 @@ final class AsteroidView {
 
 			$rows .= '
 				<tr id="asteroid_id_' . $asteroidID . '" class="asteroid-list-row">
-					<th scope="row">' . $asteroidID . '</th>
-					<td class="text-center">' . $asteroid->asteroidName . '</td>
-					<td class="text-center">' . $asteroid->asteroidDiameter . '</td>
-					<td class="text-center">' . $asteroid->asteroidDistanceFromSun . '</td>
+					<th scope="row" class="text-center">' . $asteroidID . '</th>
+					<td class="text-left">' . $asteroid->asteroidName . '</td>
+					<td class="text-center">' . number_format($asteroid->asteroidDiameter, 1) . ' KM</td> <!-- decimal(6,1) -->
+					<td class="text-center">' . number_format($asteroid->asteroidDistanceFromSun, 4) . ' AU</td> <!-- decimal(8,4) -->
 					<td class="text-center">' . $asteroid->asteroidDiscoverer . '</td>
 					<td class="text-center">' . $asteroid->asteroidDateDiscovered . '</td>
-					<td class="text-center">
+					<td class="text-center text-nowrap">
 						<a href="/' . Lang::prefix() . 'perihelion-satellite/asteroids/update/' . $asteroidID . '/" class="btn btn-sm btn-outline-primary">' . Lang::getLang('update') . '</a>
 						<a href="/' . Lang::prefix() . 'perihelion-satellite/asteroids/confirm-delete/' . $asteroidID . '/" class="btn btn-sm btn-outline-danger">' . Lang::getLang('delete') . '</a>
 					</td>

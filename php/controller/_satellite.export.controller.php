@@ -30,7 +30,7 @@ final class PerihelionSatelliteExportController {
 				$asteroidList = new AsteroidList($arg);
 				$asteroids = $asteroidList->asteroids();
 
-				$this->filename = 'satellite_asteroid_export_' . str_replace('_', '-', $loc[4]);
+				$this->filename = 'asteroid_export_' . str_replace('_', '-', $loc[4]);
 
 				$this->columns[] = 'asteroidID';
 				$this->columns[] = 'asteroidName';
