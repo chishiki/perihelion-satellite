@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS `example_Asteroid`;
 
 CREATE TABLE `example_Asteroid` (
     `asteroidID` int(12) NOT NULL AUTO_INCREMENT,
