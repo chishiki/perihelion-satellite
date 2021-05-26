@@ -32,6 +32,9 @@ final class AsteroidViewController {
 			// /perihelion-satellite/asteroids/update/<asteroidID>/
 			if ($loc[2] == 'update' && ctype_digit($loc[3])) { return $asteroidView->asteroidForm('update',$loc[3]); }
 
+			// /perihelion-satellite/asteroids/confirm-delete/<asteroidID>/
+			if ($loc[2] == 'confirm-delete' && ctype_digit($loc[3])) { return $asteroidView->asteroidConfirmDelete($loc[3]); }
+
 			// /perihelion-satellite/asteroids/
 			return $asteroidView->asteroidList();
 

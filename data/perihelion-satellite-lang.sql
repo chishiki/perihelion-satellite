@@ -11,3 +11,5 @@ INSERT INTO perihelion_Lang VALUES ('asteroidCreate', 'Add Asteroid', 0, '小惑
 INSERT INTO perihelion_Lang VALUES ('asteroidCreateSuccessful', 'Asteroid created successfully.', 0, '小惑星が追加されました。', 0, @langTimeStamp);
 INSERT INTO perihelion_Lang VALUES ('asteroidUpdate', 'Update Asteroid', 0, '小惑星更新', 0, @langTimeStamp);
 INSERT INTO perihelion_Lang VALUES ('asteroidUpdateSuccessful', 'Asteroid updated successfully.', 0, '小惑星が更新されました。', 0, @langTimeStamp);
+INSERT INTO perihelion_Lang VALUES ('asteroidConfirmDelete', 'Delete Asteroid', 0, '小惑星削除', 0, @langTimeStamp);
+INSERT INTO perihelion_Lang VALUES ('asteroidDeleteSuccessful', 'Asteroid deleted successfully.', 0, '小惑星が削除されました。', 0, @langTimeStamp);

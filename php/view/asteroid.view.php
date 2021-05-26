@@ -181,7 +181,7 @@ final class AsteroidView {
 				<div class="form-row">
 				
 					<div class="form-group col-6 col-md-3 offset-md-6">
-						<button type="submit" name="asteroid-confirm-delete" class="btn btn-block btn-outline-danger">' . Lang::getLang('delete') . '</button>
+						<button type="submit" name="asteroid-delete" class="btn btn-block btn-outline-danger">' . Lang::getLang('delete') . '</button>
 					</div>
 					
 					<div class="form-group col-6 col-md-3">
