@@ -26,6 +26,8 @@ final class AsteroidView {
 
 		$body = '
 
+			<h1>HELLO WORLD</h1>
+			
 			<div class="row">
 				<div class="col-12 col-sm-6 offset-sm-6 col-md-3 offset-md-9 col-lg-2 offset-lg-10">
 					<a href="/' . Lang::prefix() . 'perihelion-satellite/asteroids/create/" class="btn btn-block btn-outline-success">' . Lang::getLang('create') . '</a>
